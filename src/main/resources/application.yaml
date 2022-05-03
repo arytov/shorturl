@@ -1,0 +1,11 @@
+spring:
+    application:
+        name: shorturl
+    data:
+        cassandra:
+            keyspace-name: url
+            local-datacenter: DC1
+            port: 9042
+            contact-points: 127.0.0.1
+server:
+    port: 3000

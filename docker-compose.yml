@@ -1,0 +1,32 @@
+version: '3.5'
+
+services:
+#  shorturl:
+#    image: shorturl
+#    build:
+#      context: .
+#      dockerfile: ./Dockerfile
+#    ports:
+#      - 3000:3000
+  cassandra:
+    image: cassandra:latest
+    container_name: cassandra
+    ports:
+      - "9042:9042"
+#      - "7000:7000"
+    environment:
+      - "MAX_HEAP_SIZE=512M"
+      - "HEAP_NEWSIZE=256M"
+    restart: always
+    volumes:
+      - ./src/main/resources/cassandra_schema.cql:/schema.cql 
+#      volumes:
+#        - ./out/cassandra_data:/var/lib/cassandra
+#  cassandra-load-keyspace:
+#    container_name: cassandra-load-keyspace
+#    image: cassandra:latest
+#    depends_on:
+#      - cassandra
+#    volumes:
+#      - ./src/main/resources/cassandra_schema.cql:/schema.cql 
+#    command: /bin/bash -c "sleep 60 && echo loading cassandra keyspace && cqlsh cassandra -f /schema.cql"
